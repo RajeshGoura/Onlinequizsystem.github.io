@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="quizstyles.css">
+</head>
+<body>
+  <video autoplay loop muted plays-inline class="back-video"> <source src="images/videobg.mp4" type="video/mp4"></video>
+    <div class="container">
+      <div class="title"><h1>Geography Quiz</h1></div>
+		
+    <form>
+  <div id="quiz"></div>
+  <div class="button-div">
+    <button id="submit-button">Submit</button>
+  </div>
+  
+  <div id="results">Click on Submit Button to see your score</div>
+    </form>
+    </div>
+    <a href="index.html"><button class="button-54" role="button">Go back to Home Page</button></a>
+  
+  <script>
+    const quizData = [
+      {
+        question: "What is the capital of France?",
+        answers: [
+          { text: "Paris", correct: true },
+          { text: "Rome", correct: false },
+          { text: "Berlin", correct: false },
+          { text: "Madrid", correct: false }
+        ]
+      },
+      {
+        question: "Which is the largest country in world?",
+        answers: [
+          { text: "Canada", correct: false },
+          { text: "Australia", correct: false },
+          { text: "Russia", correct: true },
+          { text: "India", correct: false }
+        ]
+      },
+      {
+        question: "What is the smallest country in the world?",
+        answers: [
+          { text: "Hong-Kong", correct: false },
+          { text: "Monaco", correct: false },
+          { text: "San Marino", correct: false },
+          { text: "Vatican City", correct: true }
+        ]
+      },
+      {
+        question: "What is the currency of Japan?",
+        answers: [
+          { text: "Yen", correct: true },
+          { text: "Dollar", correct: false },
+          { text: "Euro", correct: false },
+          { text: "Pound", correct: false }
+        ]
+      },
+
+      {
+        question: "Which is the biggest Ocean on Earth ?",
+        answers: [
+          { text: "Indian-Ocean", correct: false },
+          { text: "Pacific Ocean", correct: true },
+          { text: "Atlantic Ocean", correct: false },
+          { text: "Antartic Ocean", correct: false }
+        ]
+      },
+
+
+      {
+        question: "Which country has highest population in the world",
+        answers: [
+          { text: "Russia", correct: false },
+          { text: "India", correct: false },
+          { text: "China", correct: true },
+          { text: "Pakistan", correct: false }
+        ]
+      },
+
+
+      {
+        question: "The tropic of cancer does not pass through which of these Indian states ?",
+        answers: [
+          { text: "Madhya Pradesh", correct: false },
+          { text: "West Bengal", correct: false },
+          { text: "Rajasthan", correct: false },
+          { text: "Odisha", correct: true }
+        ]
+      },
+
+      {
+        question: "What is the capital of India ?",
+        answers: [
+          { text: "Noida", correct: false },
+          { text: "Mumbai", correct: false },
+          { text: "New Delhi", correct: true },
+          { text: "Kolkata", correct: false }
+        ]
+      },
+
+      {
+        question: "Which country won the FIFA 2023 cup",
+        answers: [
+          { text: "Argentina", correct: true },
+          { text: "Portugal", correct: false },
+          { text: "France", correct: false },
+          { text: "Spain", correct: false }
+        ]
+      },
+
+
+      {
+        question: "Which country has the highest number of volcanoes ?",
+        answers: [
+          { text: "USA", correct: true },
+          { text: "Japan", correct: false },
+          { text: "Indonesia", correct: false },
+          { text: "Malaysia", correct: false }
+        ]
+      },
+
+      
+
+
+
+    ];
+    
+    const quizContainer = document.getElementById("quiz");
+    const submitButton = document.getElementById("submit-button");
+    const resultsElement = document.getElementById("results");
+    
+    let score = 0;
+    
+    loadQuiz();
+    
+    function loadQuiz() {
+      let quizHTML = "";
+    
+      quizData.forEach((questionData, index) => {
+        quizHTML += `
+          <div>
+            <h3>${index + 1}. ${questionData.question}</h3>
+            <div>
+        `;
+    
+        questionData.answers.forEach((answerData, answerIndex) => {
+          quizHTML += `
+            <label for="answer-${index}-${answerIndex}">
+              <input type="radio" name="answer-${index}" id="answer-${index}-${answerIndex}" value="${answerIndex}">
+              ${answerData.text}
+            </label>
+          `;
+        });
+    
+        quizHTML += `
+            </div>
+      
+    `;
+  });
+
+  quizContainer.innerHTML = quizHTML;
+}
+
+
+
+
+
+
+const radioButtons = document.querySelectorAll('input[type="radio"]');
+radioButtons.forEach((radioButton) => {
+  radioButton.addEventListener("change", (event) => {
+    const label = event.target.parentElement;
+    if (event.target.checked) {
+      label.classList.add("selected");
+    } else {
+      label.classList.remove("selected");
+    }
+  });
+});
+
+submitButton.addEventListener("click", () => {
+  const selectedAnswers = document.querySelectorAll('input[type="radio"]:checked');
+  event.preventDefault();
+  score = 0;
+
+  selectedAnswers.forEach((selectedAnswer) => {
+    const questionIndex = selectedAnswer.name.split("-")[1];
+    const answerIndex = selectedAnswer.value;
+
+    const selectedOption = quizData[questionIndex].answers[answerIndex];
+    if (selectedOption.correct) {
+      selectedAnswer.parentElement.classList.add("selected");
+      selectedAnswer.parentElement.classList.add("correct");
+      score++;
+    } else {
+      selectedAnswer.parentElement.classList.add("selected");
+      selectedAnswer.parentElement.classList.add("wrong");
+    }
+  });
+
+  resultsElement.innerText = `Your score: ${score}/${quizData.length}`;
+});
+</script>
+</body>
+</html>

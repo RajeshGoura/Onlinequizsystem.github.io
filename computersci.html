@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="quizstyles.css">
+</head>
+<body>
+  <video autoplay loop muted plays-inline class="back-video"> <source src="images/videobg.mp4" type="video/mp4"></video>
+    <div class="container">
+      <div class="title"><h1>Computer Science Quiz</h1></div>
+		
+    <form>
+  <div id="quiz"></div>
+  <div class="button-div">
+    <button id="submit-button">Submit</button>
+  </div>
+  
+  <div id="results">Click on Submit Button to see your score</div>
+    </form>
+    </div>
+    <a href="index.html"><button class="button-54" role="button">Go back to Home Page</button></a>
+  
+  <script>
+    const quizData = [
+      {
+        question: "Using Microsoft word we can simply ___",
+        answers: [
+          { text: "Paste picture", correct: false },
+          { text: "Type", correct: false },
+          { text: "Format a text", correct: false },
+          { text: "All the above functions", correct: true }
+        ]
+      },
+      {
+        question: "The Binary Coded Decimal (BCD) uses",
+        answers: [
+          { text: "16 bits", correct: false },
+          { text: "8 bits", correct: false },
+          { text: "6 bits", correct: true },
+          { text: "32 bits", correct: false }
+        ]
+      },
+      {
+        question: "The two kinds of main memory are",
+        answers: [
+          { text: "CDs and DVDs", correct: false },
+          { text: "Direct and sequential", correct: false },
+          { text: "Primary and secondary", correct: false },
+          { text: "RAM and ROM", correct: true }
+        ]
+      },
+      {
+        question: "RAM is also called as",
+        answers: [
+          { text: "Volatile memory", correct: true },
+          { text: "Virtual Memory", correct: false },
+          { text: "non Volatile Memory", correct: false },
+          { text: "Cache memory", correct: false }
+        ]
+      },
+
+      {
+        question: "The main memory of computer is also called as",
+        answers: [
+          { text: "Hard-disk", correct: false },
+          { text: "Primary storage", correct: true },
+          { text: "Secondary storage", correct: false },
+          { text: "Internal memory", correct: false }
+        ]
+      },
+
+
+      {
+        question: "CD-ROM stands for",
+        answers: [
+          { text: "Compactable Read Only Memory", correct: false },
+          { text: "Compact Data Read Only Memory", correct: false },
+          { text: "Compact Disc Read Only Memory", correct: true },
+          { text: "Compactable Read Only Memory", correct: false }
+        ]
+      },
+
+
+      {
+        question: "Terms used to describe concurrent processing via CRT in unit processor system is/are",
+        answers: [
+          { text: "Online processing", correct: false },
+          { text: "Interactive processing", correct: false },
+          { text: "Time sharing", correct: false },
+          { text: "All of these", correct: true }
+        ]
+      },
+
+      {
+        question: "In the batch processing environment, data is",
+        answers: [
+          { text: "Processed immediately", correct: false },
+          { text: "Held in a temporary computer file", correct: false },
+          { text: "Collected over a period of time", correct: true },
+          { text: "Entered directly into the computer", correct: false }
+        ]
+      },
+
+      {
+        question: "Computer instructions in a program are performed in which order?",
+        answers: [
+          { text: "Consecutive", correct: true },
+          { text: "Parallel", correct: false },
+          { text: "Random", correct: false },
+          { text: "All of these", correct: false }
+        ]
+      },
+
+
+      {
+        question: "An application program that helps the user to change any number and immediately see the result of that change is",
+        answers: [
+          { text: "Spreadsheet", correct: true },
+          { text: "Desktop publishing program", correct: false },
+          { text: "E-mail Editor", correct: false },
+          { text: "Database", correct: false }
+        ]
+      },
+
+      
+
+
+
+    ];
+    
+    const quizContainer = document.getElementById("quiz");
+    const submitButton = document.getElementById("submit-button");
+    const resultsElement = document.getElementById("results");
+    
+    let score = 0;
+    
+    loadQuiz();
+    
+    function loadQuiz() {
+      let quizHTML = "";
+    
+      quizData.forEach((questionData, index) => {
+        quizHTML += `
+          <div>
+            <h3>${index + 1}. ${questionData.question}</h3>
+            <div>
+        `;
+    
+        questionData.answers.forEach((answerData, answerIndex) => {
+          quizHTML += `
+            <label for="answer-${index}-${answerIndex}">
+              <input type="radio" name="answer-${index}" id="answer-${index}-${answerIndex}" value="${answerIndex}">
+              ${answerData.text}
+            </label>
+          `;
+        });
+    
+        quizHTML += `
+            </div>
+      
+    `;
+  });
+
+  quizContainer.innerHTML = quizHTML;
+}
+
+
+
+
+
+
+const radioButtons = document.querySelectorAll('input[type="radio"]');
+radioButtons.forEach((radioButton) => {
+  radioButton.addEventListener("change", (event) => {
+    const label = event.target.parentElement;
+    if (event.target.checked) {
+      label.classList.add("selected");
+    } else {
+      label.classList.remove("selected");
+    }
+  });
+});
+
+submitButton.addEventListener("click", () => {
+  const selectedAnswers = document.querySelectorAll('input[type="radio"]:checked');
+  event.preventDefault();
+  score = 0;
+
+  selectedAnswers.forEach((selectedAnswer) => {
+    const questionIndex = selectedAnswer.name.split("-")[1];
+    const answerIndex = selectedAnswer.value;
+
+    const selectedOption = quizData[questionIndex].answers[answerIndex];
+    if (selectedOption.correct) {
+      selectedAnswer.parentElement.classList.add("selected");
+      selectedAnswer.parentElement.classList.add("correct");
+      score++;
+    } else {
+      selectedAnswer.parentElement.classList.add("selected");
+      selectedAnswer.parentElement.classList.add("wrong");
+    }
+  });
+
+  resultsElement.innerText = `Your score: ${score}/${quizData.length}`;
+});
+</script>
+</body>
+</html>

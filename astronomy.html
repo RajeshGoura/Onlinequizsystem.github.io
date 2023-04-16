@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="quizstyles.css">
+</head>
+<body>
+  <video autoplay loop muted plays-inline class="back-video"> <source src="images/videobg.mp4" type="video/mp4"></video>
+    <div class="container">
+      <div class="title"><h1>Astronomy Quiz</h1></div>
+		
+    <form>
+  <div id="quiz"></div>
+  <div class="button-div">
+    <button id="submit-button">Submit</button>
+  </div>
+  
+  <div id="results">Click on Submit Button to see your score</div>
+    </form>
+    </div>
+    <a href="index.html"><button class="button-54" role="button">Go back to Home Page</button></a>
+  
+  <script>
+    const quizData = [
+      {
+        question: "Halley’s comet appears once in a period of",
+        answers: [
+          { text: "76 years", correct: true },
+          { text: "84 years", correct: false },
+          { text: "24 years", correct: false },
+          { text: "32 years", correct: false }
+        ]
+      },
+      {
+        question: "Which of the following is the brightest planet?",
+        answers: [
+          { text: "Neptune", correct: false },
+          { text: "Pluto", correct: false },
+          { text: "Venus", correct: true },
+          { text: "Mercury", correct: false }
+        ]
+      },
+      {
+        question: "The planet that has no satellite is",
+        answers: [
+          { text: "Neptune", correct: false },
+          { text: "Uranus", correct: false },
+          { text: "Mars", correct: false },
+          { text: "Pluto", correct: true }
+        ]
+      },
+      {
+        question: "The radiant energy of the sun is transmitted in the form of",
+        answers: [
+          { text: "Short waves", correct: true },
+          { text: "Long waves", correct: false },
+          { text: "Particles", correct: false },
+          { text: "None of these", correct: false }
+        ]
+      },
+
+      {
+        question: "The outermost layer of Sun is called",
+        answers: [
+          { text: "Corona", correct: false },
+          { text: "Chromospheres", correct: true },
+          { text: "Lithosphere", correct: false },
+          { text: " Photosphere", correct: false }
+        ]
+      },
+
+
+      {
+        question: "Solar system was discovered by",
+        answers: [
+          { text: "Russia", correct: false },
+          { text: "Galileo", correct: false },
+          { text: "Copernicus", correct: true },
+          { text: " Kepler", correct: false }
+        ]
+      },
+
+
+      {
+        question: "Which planet looks reddish in the night sky?",
+        answers: [
+          { text: "Mercury", correct: false },
+          { text: "Saturn", correct: false },
+          { text: "Jupiter", correct: false },
+          { text: "Mars", correct: true }
+        ]
+      },
+
+      {
+        question: "Which one among the following four planets is the biggest in size?",
+        answers: [
+          { text: "Mercury", correct: false },
+          { text: "Venus", correct: false },
+          { text: "Earth", correct: true },
+          { text: "Mars", correct: false }
+        ]
+      },
+
+      {
+        question: "Asteroids have their orbits between the planets",
+        answers: [
+          { text: " Mars & Jupiter", correct: true },
+          { text: "Earth & Mars", correct: false },
+          { text: "Mercury& Venus", correct: false },
+          { text: "Jupiter & Saturn", correct: false }
+        ]
+      },
+
+
+      {
+        question: "Which planet is known as the ‘Watery Planet’?",
+        answers: [
+          { text: "Earth", correct: true },
+          { text: "Mars", correct: false },
+          { text: "Jupiter", correct: false },
+          { text: "Mercury", correct: false }
+        ]
+      },
+
+      
+
+
+
+    ];
+    
+    const quizContainer = document.getElementById("quiz");
+    const submitButton = document.getElementById("submit-button");
+    const resultsElement = document.getElementById("results");
+    
+    let score = 0;
+    
+    loadQuiz();
+    
+    function loadQuiz() {
+      let quizHTML = "";
+    
+      quizData.forEach((questionData, index) => {
+        quizHTML += `
+          <div>
+            <h3>${index + 1}. ${questionData.question}</h3>
+            <div>
+        `;
+    
+        questionData.answers.forEach((answerData, answerIndex) => {
+          quizHTML += `
+            <label for="answer-${index}-${answerIndex}">
+              <input type="radio" name="answer-${index}" id="answer-${index}-${answerIndex}" value="${answerIndex}">
+              ${answerData.text}
+            </label>
+          `;
+        });
+    
+        quizHTML += `
+            </div>
+      
+    `;
+  });
+
+  quizContainer.innerHTML = quizHTML;
+}
+
+
+
+
+
+
+const radioButtons = document.querySelectorAll('input[type="radio"]');
+radioButtons.forEach((radioButton) => {
+  radioButton.addEventListener("change", (event) => {
+    const label = event.target.parentElement;
+    if (event.target.checked) {
+      label.classList.add("selected");
+    } else {
+      label.classList.remove("selected");
+    }
+  });
+});
+
+submitButton.addEventListener("click", () => {
+  const selectedAnswers = document.querySelectorAll('input[type="radio"]:checked');
+  event.preventDefault();
+  score = 0;
+
+  selectedAnswers.forEach((selectedAnswer) => {
+    const questionIndex = selectedAnswer.name.split("-")[1];
+    const answerIndex = selectedAnswer.value;
+
+    const selectedOption = quizData[questionIndex].answers[answerIndex];
+    if (selectedOption.correct) {
+      selectedAnswer.parentElement.classList.add("selected");
+      selectedAnswer.parentElement.classList.add("correct");
+      score++;
+    } else {
+      selectedAnswer.parentElement.classList.add("selected");
+      selectedAnswer.parentElement.classList.add("wrong");
+    }
+  });
+
+  resultsElement.innerText = `Your score: ${score}/${quizData.length}`;
+});
+</script>
+</body>
+</html>

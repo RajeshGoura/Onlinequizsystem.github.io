@@ -1,0 +1,367 @@
+html{
+	scroll-behavior: smooth;
+}
+
+nav ul li{
+   
+	list-style: none;
+	display: inline-block;
+	margin-left: 40px;
+}
+nav ul li a{
+	text-decoration: none;
+	color:white;
+	font-size: 17px;
+}
+body{
+	font-family: 'Popins', sans-serif;
+	color: white;
+	margin: 0;
+}
+.back-video{
+	position:fixed;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}
+@media(min-aspect-ratio: 16/9){
+	.back-video{
+		width: 100%;
+		height: auto;
+	}
+}
+@media(max-aspect-ratio: 16/9){
+	.back-video{
+		width: auto;
+		height: 100%;
+	}
+}
+.hero{
+	width: 100%;
+	height: 100vh;
+	position:relative;
+	/* padding: 0 5%; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+nav{
+  
+	position:absolute;
+	top: 0;
+	left: 0;
+	padding: 20px 1%;
+	display: flex;
+	align-items:right;
+	justify-content:right;
+	
+}
+.content{
+	text-align: center;
+}
+.content h1{
+	font-size: 120px;
+	color: #fff;
+	font-weight: 600;
+	transition: 0.5s;
+}
+.content h1:hover{
+	-webkit-text-stroke: 2px #fff;
+	color: transparent;
+}
+
+.about{
+	background-color: rgba(22, 10, 15, 0.413);
+	margin: 0;
+	height: 100vh;
+}
+.content h3{
+	text-align: center;
+	color:black;
+}
+.description-box{
+	width:60%;
+	margin-left: 19%;
+	background-color: white;
+	border:3px rgb(0, 0, 0) solid;
+	box-shadow: 10px 10px black;
+	
+
+}
+.quiz{
+	background-color: white;
+	height: 100vh;
+	width: 100%;
+	
+	
+}
+.imgbox1{
+	height: 50vh;
+	width:30%;
+	margin-left:5%;
+	
+	background-image:url("images/Computer-Science-Engineering.png");
+	background-size: cover;
+	border:3px rgb(255, 255, 255) solid;
+	box-shadow: 10px 10px black;
+	
+}
+.csquiz{
+	height: 90vh;
+	padding-top: 10vh;
+	background-color: rgb(162, 49, 203);
+	display: flex;
+}
+
+
+
+
+.imgbox2{
+	height: 50vh;
+	width:30%;
+	margin-left:5%;
+	
+	background-image:url("images/geography.jpg");
+	background-size: cover;
+	border:3px rgb(255, 255, 255) solid;
+	box-shadow: 10px 10px black;
+	
+}
+.csquiz1{
+	height: 90vh;
+	padding-top: 10vh;
+	
+	display: flex;
+}
+
+
+
+
+.imgbox2{
+	height: 50vh;
+	width:30%;
+	margin-left:5%;
+	
+	background-image:url("images/geography.jpg");
+	background-size: cover;
+	border:3px rgb(255, 255, 255) solid;
+	box-shadow: 10px 10px black;
+	
+}
+.csquiz1{
+	height: 90vh;
+	padding-top: 10vh;
+	background-color: rgb(231, 235, 140);
+	display: flex;
+}
+
+
+
+
+
+.imgbox3{
+	height: 50vh;
+	width:30%;
+	margin-left:5%;
+	
+	background-image:url("images/astronomy.png");
+	background-size: cover;
+	border:3px rgb(255, 255, 255) solid;
+	box-shadow: 10px 10px black;
+	
+}
+.csquiz2{
+	height: 90vh;
+	padding-top: 10vh;
+	background-color: rgb(87, 16, 150);
+	display: flex;
+}
+.contentquiz{
+	text-align:center;
+	height:47vh;
+	padding:15px 10px;
+	width:50%;
+	margin-left:12%;
+	margin-right: 5%;
+	background-color: rgb(255, 254, 254);
+	border:3px rgb(0, 0, 0) solid;
+	box-shadow: 10px 10px black;
+	
+}
+.contentquiz h1{
+	margin:0;
+	font-size: 70px;
+	color: #000000;
+	font-weight: 600;
+	transition: 0.5s;
+}
+.contentquiz h1:hover{
+	-webkit-text-stroke: 2px #000000;
+	color: transparent;
+}
+.contentquiz h3{
+	text-align:left;
+	color:rgb(0, 0, 0);
+	font-weight: lighter;
+}
+
+.button-54 {
+font-family: "Open Sans", sans-serif;
+font-size: 16px;
+letter-spacing: 2px;
+text-decoration: none;
+text-transform: uppercase;
+color: #000;
+background-color:#40e95c;
+cursor: pointer;
+border: 3px solid;
+padding: 0.25em 0.5em;
+box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+position: relative;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+margin-top:50px;
+}
+
+.button-54:active {
+box-shadow: 0px 0px 0px 0px;
+top: 5px;
+left: 5px;
+}
+
+@media (min-width: 768px) {
+.button-54 {
+padding: 0.25em 0.75em;
+}
+}
+
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+
+
+.footer {
+position:relative;
+/* width: 100; */
+background: #3586ff;
+min-height: 100px;
+padding: 20px 50px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+bottom: 0;
+
+}
+
+.social-icon,
+.menu {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 10px 0;
+flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+list-style: none;
+}
+
+.social-icon__link {
+font-size: 2rem;
+color: #fff;
+margin: 0 10px;
+display: inline-block;
+transition: 0.5s;
+}
+.social-icon__link:hover {
+transform: translateY(-10px);
+}
+
+.menu__link {
+font-size: 1.2rem;
+color: #fff;
+margin: 0 10px;
+display: inline-block;
+transition: 0.5s;
+text-decoration: none;
+opacity: 0.75;
+font-weight: 300;
+}
+
+.menu__link:hover {
+opacity: 1;
+}
+
+.footer p {
+color: #fff;
+margin: 15px 0 10px 0;
+font-size: 1rem;
+font-weight: 300;
+}
+
+.wave {
+position: absolute;
+top: -100px;
+left: 0;
+width: 100%;
+height: 100px;
+background: url("https://i.ibb.co/wQZVxxk/wave.png");
+background-size: 1000px 100px;
+}
+
+.wave#wave1 {
+z-index: 1000;
+opacity: 1;
+bottom: 0;
+animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+z-index: 999;
+opacity: 0.5;
+bottom: 10px;
+animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+z-index: 1000;
+opacity: 0.2;
+bottom: 15px;
+animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+z-index: 999;
+opacity: 0.7;
+bottom: 20px;
+animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+0% {
+background-position-x: 1000px;
+}
+100% {
+background-positon-x: 0px;
+}
+}
+
+@keyframes animate {
+0% {
+background-position-x: -1000px;
+}
+100% {
+background-positon-x: 0px;
+}
+}
+.footertest{
+height:100px;
+background-color: #000000;
+}
